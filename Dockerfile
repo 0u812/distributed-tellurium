@@ -12,7 +12,7 @@ RUN yum -y install python36u python36u-pip python36u-devel
 RUN yum -y install wget
 RUN wget --progress=dot:giga https://github.com/0u812/distributed-tellurium/releases/download/0.0.1/spark-2.2.1-bin-hadoop2.7.tgz -O /opt/spark.tgz
 RUN mkdir /opt/spark
-RUN tar -xf /opt/spark.tgz -C /opt/spark
+RUN tar -xf /opt/spark.tgz -C /opt/spark --strip-components=1
 
 # install pyspark
 RUN python3.6 -m pip install pyspark
@@ -21,6 +21,6 @@ RUN python3.6 -m pip install pyspark
 RUN mkdir -p /opt/tellurium
 RUN git clone -b param-est https://github.com/sys-bio/tellurium.git /opt/tellurium
 RUN python3.6 -m pip install -r /opt/tellurium/requirements.txt
+WORKDIR /opt/tellurium
 RUN python3.6 setup.py develop
 
-RUN ls /opt/spark
