@@ -9,7 +9,8 @@ RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm
 RUN yum -y install python36u python36u-pip python36u-devel
 
 # install spark
-RUN wget https://github.com/0u812/distributed-tellurium/releases/download/0.0.1/spark-2.2.1-bin-hadoop2.7.tgz /opt/spark.tgz
+RUN yum -y install wget
+RUN wget --progress=dot:giga https://github.com/0u812/distributed-tellurium/releases/download/0.0.1/spark-2.2.1-bin-hadoop2.7.tgz -O /opt/spark.tgz
 RUN mkdir /opt/spark
 RUN tar -xf /opt/spark.tgz -C /opt/spark
 
