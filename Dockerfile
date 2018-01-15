@@ -1,5 +1,6 @@
 FROM centos@81c4e5d1b337
 
+# install prerequisites
 RUN yum update
 RUN yum -y install yum-utils
 RUN yum -y groupinstall development
@@ -13,6 +14,7 @@ RUN yum -y install wget
 RUN wget --progress=dot:giga https://github.com/0u812/distributed-tellurium/releases/download/0.0.1/spark-2.2.1-bin-hadoop2.7.tgz -O /opt/spark.tgz
 RUN mkdir /opt/spark
 RUN tar -xf /opt/spark.tgz -C /opt/spark --strip-components=1
+ENV SPARK_HOME /opt/spark
 
 # install pyspark
 RUN python3.6 -m pip install pyspark
